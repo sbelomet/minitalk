@@ -1,37 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 12:16:14 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/23 15:23:57 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/11/23 12:21:42 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/11/23 13:31:35 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-void	signal_handler(int signum)
+int	is_numerical(char *s)
 {
-	if (signum == SIGUSR1)
-		ft_printf("1\n");
-	else if (signum == SIGUSR2)
-		ft_printf("0\n");
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		while ((s[i] > 8 && s[i] < 14) || s[i] == ' ')
+			i++;
+		while (s[i] > 47 && s[i] < 58)
+			i++;
+	}
+	if (i != ft_strlen(s))
+		return (0);
+	return (1);
 }
 
-int	main(void)
+int	ft_atoi(char *str)
 {
-	struct sigaction	action;
+	int	i;
+	int	res;
 
-	ft_printf("HERE IS THE PID >>>> %d <<<<\n", getpid());
-	action.sa_handler = signal_handler;
-	sigemptyset(&action.sa_mask);
-	action.sa_flags = 0;
-	sigaction(SIGUSR1, &action, NULL);
-	sigaction(SIGUSR2, &action, NULL);
-	while (1)
+	i = 0;
+	res = 0;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == ' ')
+		i++;
+	while (str[i] > 47 && str[i] < 58)
 	{
-		pause();
+		res = res * 10 + (str[i] - '0');
+		i++;
 	}
+	return (res);
 }

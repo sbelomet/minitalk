@@ -6,15 +6,19 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:12:12 by sbelomet          #+#    #+#              #
-#    Updated: 2023/11/22 13:09:58 by sbelomet         ###   ########.fr        #
+#    Updated: 2023/11/23 12:22:52 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Variables
 
-NAME		=	push_swap
-HEADERS		=	-I push_swap.h
-OBJ_DIR		=	obj/
+NAME		=	minitalk/
+SERVER		=	server
+CLIENT		=	client
+HEADERS		=	-I includes
+SRC_DIR		=	srcs/
+OBJ_DIR		=	objs/
+LIBFTPRINTF	=	ft_printf/libftprintf.a
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 
@@ -44,18 +48,29 @@ CHILLY		=	\xf0\x9f\xa5\xb6
 
 #Sources
 
-SRC_RAW		=	
+FILES_EXT	=	utils
 
-SRCS		=	$(addsuffix .c, $(SRC_RAW))
-OBJS		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_RAW)))
+SV_FILES	=	server $(FILES_EXT)
+SRC_SV		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SV_FILES)))
+OBJ_SV		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SV_FILES)))
+
+CL_FILES	=	client $(FILES_EXT)
+SRC_CL		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(CL_FILES)))
+OBJ_CL		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(CL_FILES)))
 
 ###
 
 all:			$(OBJ_DIR) $(NAME)
 
-$(NAME):		$(OBJS)
+$(LIBFTPRINTF):
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
-				$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+				@make -C ft_printf
+
+$(NAME):		$(LIBFTPRINTF) $(OBJ_SV) $(OBJ_CL)
+				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
+				@mkdir -p $(NAME)
+				$(CC) $(CFLAGS) $(OBJ_SV) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
+				$(CC) $(CFLAGS) $(OBJ_CL) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(CLIENT)
 				@echo ""
 				@echo "$(GREEN)$(NAME) est compilé !$(DEF_COLOR)$(CHILLY)$(CHILLY)$(CHILLY)"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
@@ -68,14 +83,15 @@ $(OBJ_DIR):
 				@mkdir -p $(OBJ_DIR)
 
 clean:
+				@make clean -C ft_printf
 				@rm -rf $(OBJ_DIR)
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 				@echo "$(BLUE)à la poubelle les .o$(DEF_COLOR)$(UMACCTULY)$(UMACCTULY)$(UMACCTULY)"
 
 fclean:			clean
-				@rm -f $(NAME)
+				@make fclean -C ft_printf
+				@rm -rf $(NAME)
 				@echo "$(CYAN)à la poubelle l'exec$(DEF_COLOR)$(DROOLING)$(DROOLING)$(DROOLING)"
-				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 
 re:				fclean all
 
