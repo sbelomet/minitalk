@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:12:12 by sbelomet          #+#    #+#              #
-#    Updated: 2023/11/23 12:22:52 by sbelomet         ###   ########.fr        #
+#    Updated: 2023/11/24 13:46:06 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,6 @@ CYAN		=	\033[1;96m
 WHITE		=	\033[0;97m
 RAINBOW		=	$(RED)-$(YELLOW)-$(GREEN)-$(CYAN)-$(BLUE)-$(PURPLE)-
 
-#Emojis
-
-CLOWN		=	\xf0\x9f\xa4\xa1
-DROOLING	=	\xf0\x9f\xa4\xa4
-STEAMY		=	\xf0\x9f\xa5\xb5
-UMACCTULY	=	\xf0\x9f\xa4\x93
-POINT_UP	=	\xe2\x98\x9d\xef\xb8\x8f
-MOONBOY		=	\xf0\x9f\x8c\x9d
-CHILLY		=	\xf0\x9f\xa5\xb6
-
 #Sources
 
 FILES_EXT	=	utils
@@ -57,6 +47,18 @@ OBJ_SV		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SV_FILES)))
 CL_FILES	=	client $(FILES_EXT)
 SRC_CL		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(CL_FILES)))
 OBJ_CL		=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(CL_FILES)))
+
+#Sources Bonus
+
+FILES_EXT_B	=	utils_bonus
+
+SV_FILES_B	=	server_bonus $(FILES_EXT_B)
+SRC_SV_B	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(SV_FILES_B)))
+OBJ_SV_B	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SV_FILES_B)))
+
+CL_FILES_B	=	client_bonus $(FILES_EXT_B)
+SRC_CL_B	=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(CL_FILES_B)))
+OBJ_CL_B	=	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(CL_FILES_B)))
 
 ###
 
@@ -72,11 +74,20 @@ $(NAME):		$(LIBFTPRINTF) $(OBJ_SV) $(OBJ_CL)
 				$(CC) $(CFLAGS) $(OBJ_SV) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
 				$(CC) $(CFLAGS) $(OBJ_CL) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(CLIENT)
 				@echo ""
-				@echo "$(GREEN)$(NAME) est compilé !$(DEF_COLOR)$(CHILLY)$(CHILLY)$(CHILLY)"
+				@echo "$(GREEN)$(NAME) est compilé !$(DEF_COLOR)🥶🥶🥶"
+				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
+
+bonus:			$(LIBFTPRINTF) $(OBJ_SV_B) $(OBJ_CL_B)
+				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
+				@mkdir -p $(NAME)
+				$(CC) $(CFLAGS) $(OBJ_SV_B) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
+				$(CC) $(CFLAGS) $(OBJ_CL_B) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(CLIENT)
+				@echo ""
+				@echo "$(GREEN)$(NAME)(bonus) est compilé !$(DEF_COLOR)🥶🥶🥶"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c	
-				@echo "$(YELLOW)$< est dans le four...$(DEF_COLOR)$(STEAMY)$(STEAMY)$(STEAMY)"
+				@echo "$(YELLOW)$< est dans le four...$(DEF_COLOR)🥵🥵🥵"
 				@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
 $(OBJ_DIR):
@@ -86,12 +97,12 @@ clean:
 				@make clean -C ft_printf
 				@rm -rf $(OBJ_DIR)
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
-				@echo "$(BLUE)à la poubelle les .o$(DEF_COLOR)$(UMACCTULY)$(UMACCTULY)$(UMACCTULY)"
+				@echo "$(BLUE)à la poubelle les .o$(DEF_COLOR)🤓🤓🤓"
 
 fclean:			clean
 				@make fclean -C ft_printf
 				@rm -rf $(NAME)
-				@echo "$(CYAN)à la poubelle l'exec$(DEF_COLOR)$(DROOLING)$(DROOLING)$(DROOLING)"
+				@echo "$(CYAN)à la poubelle l'exec$(DEF_COLOR)🤤🤤🤤"
 
 re:				fclean all
 
