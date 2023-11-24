@@ -6,40 +6,22 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:16:15 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/23 15:02:14 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:20:24 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minitalk.h"
 
-void	print_bits(char octet)
+static void	ft_send_null(int pid)
 {
-	int		i;
-	char	bit;
+	int	i;
 
 	i = 8;
 	while (i--)
 	{
-		bit = (octet >> i & 1) + '0';
-		ft_printf("%c", bit);
+		kill(pid, SIGUSR2);
+		usleep(100);
 	}
-	ft_printf("\n");
-}
-
-char	reverse_bits(char octet)
-{
-	int		i;
-	char	res;
-
-	i = 8;
-	res = 0;
-	while (i > 0)
-	{
-		res = res * 2 + (octet % 2);
-		octet = octet / 2;
-		i--;
-	}
-	return (res);
 }
 
 static void	ft_send_message(int pid, char *message)
@@ -51,8 +33,7 @@ static void	ft_send_message(int pid, char *message)
 	i = 0;
 	while (message[i])
 	{
-		print_bits(message[i]);
-		octet = reverse_bits(message[i]);
+		octet = message[i];
 		j = 8;
 		while (j--)
 		{
@@ -65,6 +46,14 @@ static void	ft_send_message(int pid, char *message)
 		}
 		i++;
 	}
+	ft_send_null(pid);
+}
+
+void	ft_confirm(int signum)
+{
+	(void)signum;
+	ft_printf("Message sent successfully!\n");
+	exit(0);
 }
 
 int	main(int ac, char **av)
@@ -79,6 +68,8 @@ int	main(int ac, char **av)
 		ft_printf("ERROR: Invalid PID\n");
 		exit(0);
 	}
+	signal(SIGUSR1, ft_confirm);
 	ft_printf("Sending to PID %d...\n", ft_atoi(av[1]));
 	ft_send_message(ft_atoi(av[1]), av[2]);
+	pause();
 }

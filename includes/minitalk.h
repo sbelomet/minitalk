@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:21:00 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/23 13:30:59 by sbelomet         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:31:56 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@
 
 int		ft_atoi(char *str);
 int		is_numerical(char *s);
+int		ft_pow(int base, int exp);
 
 #endif
