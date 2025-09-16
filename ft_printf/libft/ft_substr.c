@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 11:20:32 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/17 11:10:23 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:16:52 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!res)
 		return (NULL);
 	if (start < strlen)
-	{	
+	{
 		while (s[i + start] && i < len)
 		{
 			res[i] = s[i + start];

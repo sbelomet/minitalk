@@ -6,11 +6,11 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:16:15 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/24 13:38:30 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:51:36 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minitalk.h"
+#include "minitalk.h"
 
 static void	ft_send_null(int pid)
 {

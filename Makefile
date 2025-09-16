@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:12:12 by sbelomet          #+#    #+#              #
-#    Updated: 2023/11/24 13:46:06 by sbelomet         ###   ########.fr        #
+#    Updated: 2025/09/16 11:48:18 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ $(NAME):		$(LIBFTPRINTF) $(OBJ_SV) $(OBJ_CL)
 				$(CC) $(CFLAGS) $(OBJ_SV) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
 				$(CC) $(CFLAGS) $(OBJ_CL) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(CLIENT)
 				@echo ""
-				@echo "$(GREEN)$(NAME) est compilé !$(DEF_COLOR)🥶🥶🥶"
+				@echo "$(GREEN)$(NAME) compiled$(DEF_COLOR)"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 
 bonus:			$(LIBFTPRINTF) $(OBJ_SV_B) $(OBJ_CL_B)
@@ -83,11 +83,11 @@ bonus:			$(LIBFTPRINTF) $(OBJ_SV_B) $(OBJ_CL_B)
 				$(CC) $(CFLAGS) $(OBJ_SV_B) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
 				$(CC) $(CFLAGS) $(OBJ_CL_B) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(CLIENT)
 				@echo ""
-				@echo "$(GREEN)$(NAME)(bonus) est compilé !$(DEF_COLOR)🥶🥶🥶"
+				@echo "$(GREEN)$(NAME)(bonus) compiled !$(DEF_COLOR)"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 
 $(OBJ_DIR)%.o:	$(SRC_DIR)%.c	
-				@echo "$(YELLOW)$< est dans le four...$(DEF_COLOR)🥵🥵🥵"
+				@echo "$(YELLOW)Working on $<...$(DEF_COLOR)"
 				@$(CC) $(CFLAGS) $(HEADERS) -o $@ -c $<
 
 $(OBJ_DIR):
@@ -97,12 +97,12 @@ clean:
 				@make clean -C ft_printf
 				@rm -rf $(OBJ_DIR)
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
-				@echo "$(BLUE)à la poubelle les .o$(DEF_COLOR)🤓🤓🤓"
+				@echo "$(BLUE)Cleared .o files$(DEF_COLOR)"
 
 fclean:			clean
 				@make fclean -C ft_printf
 				@rm -rf $(NAME)
-				@echo "$(CYAN)à la poubelle l'exec$(DEF_COLOR)🤤🤤🤤"
+				@echo "$(CYAN)Cleared all$(DEF_COLOR)"
 
 re:				fclean all
 

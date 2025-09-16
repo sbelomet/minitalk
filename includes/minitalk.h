@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:21:00 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/24 10:31:56 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/16 16:09:35 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <signal.h>
 # include <stdlib.h>
 # include "ft_printf.h"
+# include "libft.h"
 
-int		ft_atoi(char *str);
 int		is_numerical(char *s);
 int		ft_pow(int base, int exp);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
+/*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 12:09:27 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/10 16:23:17 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:16:39 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 
 	i = 0;
 	if (dstsize > 0)
-	{	
+	{
 		while (src[i] && i < dstsize - 1)
 		{
 			dst[i] = src[i];

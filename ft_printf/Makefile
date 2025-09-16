@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:12:12 by sbelomet          #+#    #+#              #
-#    Updated: 2025/09/16 11:26:29 by sbelomet         ###   ########.fr        #
+#    Updated: 2025/09/16 11:36:02 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,7 @@ OBJF		=	.cache_exists
 
 all:			$(NAME)
 
-$(NAME):		$(OBJF)
+$(NAME):		$(OBJS)
 				@make -C $(LIBFT) all
 				@cp $(LIBFT)/libft.a $(NAME)
 				@ar rc $(NAME) $(OBJS)
