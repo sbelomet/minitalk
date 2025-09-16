@@ -1,39 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/10 15:29:49 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/11 15:44:45 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	void	*p;
+	size_t	i;
 
-	p = malloc(count * size);
-	if (!p)
+	if (!dst && !src && n)
 		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	i = 0;
+	while (i < n)
+	{
+		*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+		i++;
+	}
+	return (dst);
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
+	char str[] = "ABCDEF";
+	char *one, *two;
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
+	one = str;
+	two = one + 1;
+
+	puts(str);
+
+	printf("returned memcpy: %s\n", ft_memcpy(two, one, 3));
+	puts(str);
+	write(1, one, 6);
+	puts("");
+	write(1, two, 5);
+	puts("");
 }*/

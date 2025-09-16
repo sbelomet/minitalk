@@ -1,39 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/10 16:48:26 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/11 13:21:35 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_atoi(const char *str)
 {
-	void	*p;
+	int	i;
+	int	neg;
+	int	res;
 
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	i = 0;
+	neg = 1;
+	res = 0;
+	while ((str[i] > 8 && str[i] < 14) || str[i] == ' ')
+		i++;
+	if (str[i] == '-')
+	{
+		neg *= -1;
+		i++;
+	}
+	else if (str[i] == '+')
+		i++;
+	while (str[i] > 47 && str[i] < 58)
+	{
+		res = res * 10 + (str[i] - '0');
+		i++;
+	}
+	return (res * neg);
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
+	char	str[] = "\n\n\n  -46\b9 \n5d6";
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
+	printf("atoi return: %d", ft_atoi(str));
 }*/

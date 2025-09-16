@@ -1,39 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/10 15:13:19 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/10 16:17:42 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	ft_bzero(void *s, size_t n)
 {
-	void	*p;
+	size_t	i;
 
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	i = 0;
+	while (i < n)
+	{
+		*(char *)s = '\0';
+		s++;
+		i++;
+	}
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
+	char	str[50] = "This is string.h library function";
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
+	printf("%s\n", str);
+	ft_bzero((str + 9), 7);
+	printf("%s\n", str);
 }*/

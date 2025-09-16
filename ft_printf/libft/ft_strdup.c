@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/12 09:51:24 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/12 10:03:21 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strdup(const char *s1)
 {
-	void	*p;
+	char	*s2;
+	int		i;
 
-	p = malloc(count * size);
-	if (!p)
+	i = ft_strlen(s1);
+	s2 = (char *)malloc(i * sizeof(char) + 1);
+	if (!s2)
 		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	i = 0;
+	while (s1[i])
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[i] = '\0';
+	return (s2);
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
+	char str[] = "test-test";
+	char *p;
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
+	p = ft_strdup(str);
+	printf("dup str: %s\n", p);
 }*/

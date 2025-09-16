@@ -1,39 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/11 14:55:43 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/11 17:03:12 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	void	*p;
-
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
-}
-
-/*
-int	main(void)
-{
-	int	*p;
 	int	i;
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
+	if (!dst && !src && len)
+		return (NULL);
+	if (dst > src)
 	{
-		write(1, p[i], 8);
-		i++;
+		i = (int)len - 1;
+		while (i >= 0)
+		{
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i--;
+		}
 	}
-}*/
+	else
+	{
+		i = 0;
+		while (i < (int)len)
+		{
+			*(unsigned char *)(dst + i) = *(unsigned char *)(src + i);
+			i++;
+		}
+	}
+	return (dst);
+}

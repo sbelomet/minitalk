@@ -1,39 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/12 10:58:03 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/12 11:17:20 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	void	*p;
+	int		len_s1;
+	int		tlen;
+	int		i;
+	char	*res;
 
-	p = malloc(count * size);
-	if (!p)
+	len_s1 = ft_strlen(s1);
+	tlen = len_s1 + ft_strlen(s2);
+	res = (char *)malloc(tlen * sizeof(char) + 1);
+	if (!res)
 		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	i = 0;
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	i = 0;
+	while (s2[i])
+	{
+		res[len_s1 + i] = s2[i];
+		i++;
+	}
+	res[len_s1 + i] = '\0';
+	return (res);
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
-
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
+	printf("result: |%s|\n", ft_strjoin("simon ", "petrikov"));
 }*/

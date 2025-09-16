@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/17 13:04:09 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/17 13:25:30 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_list	*ft_lstnew(void *content)
 {
-	void	*p;
+	t_list	*res;
 
-	p = malloc(count * size);
-	if (!p)
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
 		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	res->content = content;
+	res->next = NULL;
+	return (res);
 }
-
-/*
-int	main(void)
-{
-	int	*p;
-	int	i;
-
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
-	{
-		write(1, p[i], 8);
-		i++;
-	}
-}*/

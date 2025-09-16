@@ -1,39 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <marvin@42lausanne.ch>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 15:16:25 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/10/12 10:12:09 by sbelomet         ###   ########.fr       */
+/*   Created: 2023/10/10 10:26:38 by sbelomet          #+#    #+#             */
+/*   Updated: 2023/10/10 10:38:13 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_toupper(int c)
 {
-	void	*p;
-
-	p = malloc(count * size);
-	if (!p)
-		return (NULL);
-	p = ft_memset(p, '\0', count * size);
-	return (p);
+	if (c > 96 && c < 123)
+		return (c - 32);
+	return (c);
 }
 
 /*
 int	main(void)
 {
-	int	*p;
-	int	i;
+	int	i = 0;
 
-	p = (int *)ft_calloc(5, sizeof(int));
-	i = 0;
-	while (p[i])
+	while (i < 128)
 	{
-		write(1, p[i], 8);
+		printf("%c: %c\n", i, ft_toupper(i));
 		i++;
 	}
 }*/
