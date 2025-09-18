@@ -6,7 +6,7 @@
 #    By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/19 13:12:12 by sbelomet          #+#    #+#              #
-#    Updated: 2025/09/16 11:48:18 by sbelomet         ###   ########.fr        #
+#    Updated: 2025/09/18 10:28:29 by sbelomet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ $(NAME):		$(LIBFTPRINTF) $(OBJ_SV) $(OBJ_CL)
 				@echo "$(GREEN)$(NAME) compiled$(DEF_COLOR)"
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 
-bonus:			$(LIBFTPRINTF) $(OBJ_SV_B) $(OBJ_CL_B)
+bonus:			$(OBJ_DIR) $(LIBFTPRINTF) $(OBJ_SV_B) $(OBJ_CL_B)
 				@echo "$(RAINBOW)$(RAINBOW)$(RAINBOW)$(DEF_COLOR)"
 				@mkdir -p $(NAME)
 				$(CC) $(CFLAGS) $(OBJ_SV_B) $(HEADERS) $(LIBFTPRINTF) -o $(NAME)$(SERVER)
@@ -106,4 +106,6 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all clean fclean re
+reb:			fclean bonus
+
+.PHONY:			all bonus clean fclean re reb

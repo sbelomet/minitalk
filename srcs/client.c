@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:16:15 by sbelomet          #+#    #+#             */
-/*   Updated: 2025/09/16 11:51:36 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:04:11 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	ft_send_message(int pid, char *message)
 
 int	main(int ac, char **av)
 {
+	int	serv_pid;
+
 	if (ac != 3)
 	{
 		ft_printf("ERROR: ./client <PID> <MESSAGE>\n");
@@ -61,6 +63,7 @@ int	main(int ac, char **av)
 		ft_printf("ERROR: Invalid PID\n");
 		exit(0);
 	}
-	ft_printf("Sending to PID %d...\n", ft_atoi(av[1]));
-	ft_send_message(ft_atoi(av[1]), av[2]);
+	serv_pid = ft_atoi(av[1]);
+	ft_printf("Sending to PID %d...\n", serv_pid);
+	ft_send_message(serv_pid, av[2]);
 }

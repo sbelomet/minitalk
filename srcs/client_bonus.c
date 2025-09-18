@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:16:15 by sbelomet          #+#    #+#             */
-/*   Updated: 2023/11/24 12:20:24 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:57:09 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,31 @@ static void	ft_send_message(int pid, char *message)
 void	ft_confirm(int signum)
 {
 	(void)signum;
-	ft_printf("Message sent successfully!\n");
+	ft_printf("Message recieved by server!🕺🕺🕺\n");
 	exit(0);
 }
 
 int	main(int ac, char **av)
 {
+	struct sigaction	action;
+	int					serv_pid;
+
 	if (ac != 3)
 	{
 		ft_printf("ERROR: ./client <PID> <MESSAGE>\n");
-		exit(0);
+		exit(1);
 	}
 	if (!is_numerical(av[1]))
 	{
 		ft_printf("ERROR: Invalid PID\n");
-		exit(0);
+		exit(2);
 	}
-	signal(SIGUSR1, ft_confirm);
-	ft_printf("Sending to PID %d...\n", ft_atoi(av[1]));
-	ft_send_message(ft_atoi(av[1]), av[2]);
+	serv_pid = ft_atoi(av[1]);
+	action.sa_handler = ft_confirm;
+	sigemptyset(&action.sa_mask);
+	action.sa_flags = 0;
+	sigaction(SIGUSR1, &action, NULL);
+	ft_printf("Sending to PID %d...\n", serv_pid);
+	ft_send_message(serv_pid, av[2]);
 	pause();
 }

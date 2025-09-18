@@ -6,7 +6,7 @@
 /*   By: sbelomet <sbelomet@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 12:16:14 by sbelomet          #+#    #+#             */
-/*   Updated: 2025/09/16 16:09:27 by sbelomet         ###   ########.fr       */
+/*   Updated: 2025/09/18 11:17:05 by sbelomet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	signal_handler(int signum)
 		if (byte == 0)
 		{
 			ft_printf("%s\n", message);
-			message = NULL;
 			free(message);
+			message = NULL;
 		}
 		else
 		{
